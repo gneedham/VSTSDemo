@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkName": {
+      "value": "VNET"
+    },
+    "virtualNetworkAddressPrefix": {
+      "value": "10.0.0.0/21"
+    },
+    "subnetName": {
+      "value": "backendsubnet"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "loadBalancerName": {
+      "value": "IntLB"
+    },
+    "availabilitySetName": {
+      "value": "availabilityset"
+    },
+    "diagStorageAccountName": {
+      "value": "diagstgaccount"
+    },
+    "adminUsername": {
+      "value": "localadmin"
+    },
+    "adminPassword": {
+      "value": "P@ssword1234$"
+    },
+    "virtualMachineNamePrefix": {
+      "value": "DEMOVM0"
+    },
+    "virtualMachineSize": {
+      "value": "Standard_A1"
+    },
+    "windowsOSVersion": {
+      "value": "2016-Datacenter"
+    }
+  }
+}
