@@ -136,7 +136,7 @@
       {
         "apiVersion": "2016-09-01",
         "type": "Microsoft.Network/networkInterfaces",
-        "name": "[concat(variables('virtualMachineNIC'), copyindex())]",
+        "name": "[concat(variables('virtualMachineNIC'), copyindex(1))]",
         "location": "[resourceGroup().location]",
         "copy": {
           "name": "nicLoop",
@@ -227,7 +227,7 @@
       {
         "apiVersion": "2016-04-30-preview",
         "type": "Microsoft.Compute/virtualMachines",
-        "name": "[concat(parameters('virtualMachineNamePrefix'), copyindex())]",
+        "name": "[concat(parameters('virtualMachineNamePrefix'), copyindex(1))]",
         "copy": {
           "name": "virtualMachineLoop",
           "count": "[variables('numberOfInstances')]"
@@ -235,12 +235,12 @@
           "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Storage/storageAccounts/', parameters('diagStorageAccountName'))]",
-          "[concat('Microsoft.Network/networkInterfaces/', variables('virtualMachineNIC'), copyindex())]",
+          "[concat('Microsoft.Network/networkInterfaces/', variables('virtualMachineNIC'), copyindex(1))]",
           "[concat('Microsoft.Compute/availabilitySets/', parameters('availabilitySetName'))]"
         ],
           "properties": {
             "osProfile": {
-              "computerName": "[concat(parameters('virtualMachineNamePrefix'), copyIndex())]",
+              "computerName": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1))]",
               "adminUsername": "[parameters('adminUsername')]",
               "adminPassword": "[parameters('adminPassword')]",
               "windowsConfiguration": {
@@ -258,7 +258,7 @@
                 "version": "latest"
               },
               "osDisk": {
-                "name": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(), '-OS')]",
+                "name": "[concat(parameters('virtualMachineNamePrefix'), copyIndex(1), '-OS')]",
                 "createOption": "FromImage",
                 "managedDisk": {
                   "storageAccountType": "Standard_LRS"
@@ -269,7 +269,7 @@
             "networkProfile": {
               "networkInterfaces": [
                 {
-                  "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('virtualMachineNIC'),copyindex()))]"
+                  "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('virtualMachineNIC'),copyindex(1)))]"
                 }
               ]
             },
